@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вектор·Поступление — Санкт-Петербург</title>
+<style>
+  :root{
+    --ink:#121826;--ink-soft:#44506a;--paper:#fbfaf7;--paper-2:#f2efe8;
+    --brand:#1f6feb;--brand-deep:#0b3d91;--accent:#ff8a3d;--line:#e4e0d6;
+    --ok:#1f9d6b;--radius:20px;--shadow:0 18px 50px -24px rgba(16,30,60,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{line-height:1.15;letter-spacing:-.02em;font-weight:800}
+  h1{font-size:clamp(2rem,5vw,3.4rem)}
+  h2{font-size:clamp(1.6rem,3.6vw,2.5rem)}
+  h3{font-size:1.25rem}
+  p{color:var(--ink-soft)}
+  .eyebrow{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);background:rgba(31,111,235,.08);padding:7px 14px;border-radius:999px;margin-bottom:18px}
+  section{padding:80px 0}
+  .center{text-align:center;max-width:720px;margin:0 auto}
+  .btn{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-weight:700;font-size:1.02rem;border:none;border-radius:14px;padding:16px 30px;text-decoration:none;transition:.25s}
+  .btn-primary{background:var(--brand);color:#fff;box-shadow:0 14px 30px -12px rgba(31,111,235,.6)}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.6px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--brand);color:var(--brand)}
+  .btn-tg{background:#229ED9;color:#fff}
+  .btn-tg:hover{transform:translateY(-2px)}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(251,250,247,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1140px;margin:0 auto}
+  .logo{font-weight:800;font-size:1.15rem}
+  .logo span{color:var(--brand)}
+  .nav-links{display:flex;gap:28px}
+  .nav-links a{color:var(--ink-soft);text-decoration:none;font-weight:600;font-size:.95rem}
+  .nav-links a:hover{color:var(--brand)}
+  .nav .btn{padding:11px 22px;font-size:.95rem}
+  @media(max-width:820px){.nav-links{display:none}}
+
+  .hero{background:radial-gradient(1000px 600px at 85% -10%,rgba(31,111,235,.12),transparent 60%),radial-gradient(800px 500px at 0% 110%,rgba(255,138,61,.12),transparent 55%),var(--paper);padding:90px 0 70px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+  .hero h1 span{color:var(--brand)}
+  .lead-txt{font-size:1.15rem;margin:22px 0 10px;max-width:560px}
+  .stake{margin:26px 0 30px;padding:18px 22px;border-left:4px solid var(--accent);background:#fff;border-radius:0 14px 14px 0;box-shadow:var(--shadow);font-weight:600;color:var(--ink);max-width:560px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:30px;font-size:.92rem;font-weight:600;color:var(--ink-soft)}
+  .trust b{color:var(--ink);font-size:1.15rem;display:block}
+  .hero-visual{height:460px;border-radius:26px;overflow:hidden;box-shadow:var(--shadow);position:relative}
+  .hero-visual img{width:100%;height:100%;object-fit:cover}
+  .hero-badge{position:absolute;left:18px;bottom:18px;background:rgba(18,24,38,.82);color:#fff;padding:14px 18px;border-radius:14px;font-size:.9rem}
+  .hero-badge b{display:block;font-size:1.1rem}
+
+  .mirror{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
+  @media(max-width:700px){.mirror{grid-template-columns:1fr}}
+  .mirror li{list-style:none;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px;display:flex;gap:14px}
+  .mirror .dot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--accent);margin-top:9px}
+  .bridge{margin-top:40px;background:linear-gradient(135deg,var(--brand-deep),var(--brand));color:#fff;border-radius:var(--radius);padding:40px 44px}
+  .bridge p{color:#dbe7ff;font-size:1.12rem}
+  .bridge strong{color:#fff}
+
+  .guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  @media(max-width:900px){.guide-grid{grid-template-columns:1fr}}
+  .guide-visual{border-radius:24px;overflow:hidden;height:420px;box-shadow:var(--shadow)}
+  .guide-visual img{width:100%;height:100%;object-fit:cover}
+  .feature{display:flex;gap:16px;margin-top:22px}
+  .feature .ic{flex:none;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(31,111,235,.1);font-size:1.3rem}
+  .feature b{display:block;color:var(--ink);font-size:1.05rem}
+
+  .lead-box{background:var(--ink);color:#fff;border-radius:28px;overflow:hidden}
+  .lead-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;padding:56px;align-items:center}
+  @media(max-width:820px){.lead-inner{grid-template-columns:1fr;padding:40px 30px}}
+  .lead-box h2{color:#fff}
+  .lead-box p{color:#aeb8cc}
+  .lead-box ul{margin:26px 0 30px;list-style:none}
+  .lead-box li{display:flex;gap:12px;margin-bottom:14px;color:#dfe5f1}
+  .lead-box .chk{flex:none;width:24px;height:24px;border-radius:7px;background:rgba(34,158,217,.22);color:#5cc8f5;display:grid;place-items:center;font-weight:800}
+  .lead-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:34px;text-align:center}
+  .lead-card .big{font-size:3rem}
+  .lead-card h3{color:#fff;margin:10px 0 18px}
+
+  .table-wrap{overflow-x:auto;margin-top:38px;border-radius:var(--radius);box-shadow:var(--shadow)}
+  table{width:100%;border-collapse:collapse;background:#fff;min-width:640px}
+  th,td{padding:18px 20px;text-align:left;border-bottom:1px solid var(--line)}
+  thead th{background:var(--paper-2);font-size:.88rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
+  thead th:last-child{background:var(--brand);color:#fff}
+  tbody td:last-child{background:rgba(31,111,235,.05);font-weight:700;color:var(--ink)}
+  .yes{color:var(--ok);font-weight:800}
+  .mid{color:var(--accent);font-weight:700;font-size:.92rem}
+  .vn{color:#c2bdb0}
+  .verdict{margin-top:34px;font-size:1.3rem;font-weight:700;text-align:center;max-width:780px;margin-inline:auto;color:var(--ink)}
+  .verdict span{color:var(--brand)}
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:40px}
+  @media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.steps{grid-template-columns:1fr}}
+  .step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 24px;transition:.25s}
+  .step:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .step .num{font-size:2.4rem;font-weight:800;color:var(--brand);opacity:.25;line-height:1}
+  .step h3{margin:10px 0 8px;font-size:1.1rem}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  @media(max-width:900px){.cards{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px 30px;display:flex;flex-direction:column;transition:.25s}
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .card.featured{border:2px solid var(--brand);box-shadow:var(--shadow)}
+  .card .emo{font-size:2rem}
+  .card h3{margin:14px 0 4px}
+  .card .tag{color:var(--brand);font-weight:700;font-size:.92rem;margin-bottom:14px}
+  .card .who{font-size:.92rem;color:var(--ink-soft);background:var(--paper-2);padding:12px 14px;border-radius:12px;margin:16px 0}
+  .card .price{font-weight:800;font-size:1.2rem;color:var(--ink);margin-bottom:18px}
+  .card .btn{margin-top:auto;justify-content:center}
+
+  .out-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px}
+  @media(max-width:760px){.out-grid{grid-template-columns:1fr}}
+  .out-col{background:#fff;border-radius:22px;padding:36px 34px;box-shadow:var(--shadow)}
+  .out-col h3{color:var(--brand);margin-bottom:20px}
+  .out-col ul{list-style:none}
+  .out-col li{display:flex;gap:12px;padding:10px 0;color:var(--ink-soft)}
+  .out-col .chk{flex:none;width:22px;height:22px;border-radius:50%;background:rgba(31,157,107,.12);color:var(--ok);display:grid;place-items:center;font-weight:800;font-size:.8rem;margin-top:3px}
+
+  .guarantee{background:linear-gradient(135deg,#0b3d91,#1f6feb);color:#fff;border-radius:28px;padding:56px;text-align:center}
+  .guarantee h2{color:#fff}
+  .guarantee p{color:#cfe0ff;font-size:1.15rem;max-width:720px;margin:18px auto 0}
+
+  .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+  @media(max-width:900px){.reviews{grid-template-columns:1fr}}
+  .review{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px}
+  .review p{color:var(--ink)}
+  .review .who{display:flex;align-items:center;gap:12px;margin-top:20px}
+  .review .ava{width:44px;height:44px;border-radius:50%;background:var(--paper-2);display:grid;place-items:center;font-weight:800;color:var(--brand)}
+  .review .who b{display:block;font-size:.95rem;color:var(--ink)}
+  .review .who small{color:var(--ink-soft)}
+  .stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:50px;justify-content:center;text-align:center}
+  .stats div b{display:block;font-size:2.4rem;color:var(--brand);font-weight:800}
+  .stats div small{color:var(--ink-soft);font-weight:600}
+
+  .about{background:var(--paper-2)}
+  .about .box{background:#fff;border-radius:22px;padding:48px;box-shadow:var(--shadow);max-width:860px;margin:0 auto;text-align:center}
+
+  details{background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:14px;overflow:hidden}
+  summary{cursor:pointer;padding:22px 26px;font-weight:700;font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:'+';font-size:1.6rem;color:var(--brand);transition:.2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details .body{padding:0 26px 24px;color:var(--ink-soft)}
+
+  .final{background:var(--ink);color:#fff;border-radius:28px;padding:64px 48px;text-align:center;position:relative;overflow:hidden}
+  .final::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 300px at 50% -20%,rgba(31,111,235,.4),transparent 70%)}
+  .final>*{position:relative}
+  .final h2{color:#fff}
+  .final p{color:#aeb8cc;max-width:620px;margin:18px auto 30px;font-size:1.1rem}
+  .final-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .form{max-width:440px;margin:34px auto 0;display:grid;gap:12px;text-align:left}
+  .form input{padding:15px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font-size:1rem}
+  .form input::placeholder{color:#8894ab}
+
+  footer{padding:40px 0;text-align:center;color:var(--ink-soft);font-size:.9rem}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<header>
+  <nav class="nav">
+    <div class="logo">Вектор<span>·</span>Поступление</div>
+    <div class="nav-links">
+      <a href="#path">Как мы ведём</a>
+      <a href="#products">Направления</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">Вопросы</a>
+    </div>
+    <a href="#final" class="btn btn-primary">Записаться на диагностику</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Санкт-Петербург · офлайн-центр</span>
+      <h1>Помогаем подростку выбрать цель и <span>поступить туда, куда он хочет</span></h1>
+      <p class="lead-txt">Определяем направление, строим маршрут к поступлению и доводим до результата — в живом коллективе, под контролем наставника, по авторской методике.</p>
+      <div class="stake">Поступление случается раз в жизни выпускника. Чем раньше ребёнок поймёт, куда и зачем он идёт, тем спокойнее и сильнее его подготовка — и тем увереннее результат.</div>
+      <div class="hero-cta">
+        <a href="#final" class="btn btn-primary">Записаться на диагностику</a>
+        <a href="#lead" class="btn btn-ghost">Забрать маршрут поступления</a>
+      </div>
+      <div class="trust">
+        <div><b>9 лет</b>в образовании</div>
+        <div><b>Сотни</b>поступивших</div>
+        <div><b>Малые</b>группы</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80" alt="Подростки занимаются вместе">
+      <div class="hero-badge">Живая среда и наставник рядом<b>Внимание каждому ученику</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Знакомая ситуация</span>
+      <h2>Ваш ребёнок старается, а картина будущего пока размыта</h2>
+    </div>
+    <ul class="mirror">
+      <li><span class="dot"></span><div>Ребёнок учится, а конкретная цель и направление пока в тумане.</div></li>
+      <li><span class="dot"></span><div>Занимается онлайн или с нейросетью, и вам хочется видеть живой контроль и прогресс.</div></li>
+      <li><span class="dot"></span><div>Время идёт, а понятная стратегия поступления складывается медленно.</div></li>
+      <li><span class="dot"></span><div>Вы хотите уверенности, что ребёнок поступит туда, где построит достойное будущее.</div></li>
+    </ul>
+    <div class="bridge">
+      <p>Сегодня условия поступления стали жёстче: бюджетных мест меньше, конкуренция выше, а времени на раздумья у выпускника немного. <strong>Когда ребёнок точно знает, куда и зачем он идёт — он готовится собранно и попадает в цель с первого захода.</strong> Наша задача — привести его к этой ясности заранее.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDE -->
+<section id="guide" style="background:var(--paper-2)">
+  <div class="wrap guide-grid">
+    <div class="guide-visual">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1000&q=80" alt="Наставник помогает подросткам">
+    </div>
+    <div>
+      <span class="eyebrow">Мы — проводник на этом пути</span>
+      <h2>Проведём вашего ребёнка от цели до зачисления</h2>
+      <p>Девять лет мы работаем с подростками и видим главное: результат рождается там, где есть цель, среда и человек рядом, который ведёт к ней.</p>
+      <div class="feature"><div class="ic">🧭</div><div><b>Авторская методика</b><p>От «зачем учиться» → к цели → к маршруту → к поступлению. Логика, отстроенная за годы практики.</p></div></div>
+      <div class="feature"><div class="ic">⚡</div><div><b>Софт-скиллы и самоорганизация</b><p>Развиваем фокус, ответственность и умение доводить начатое до результата.</p></div></div>
+      <div class="feature"><div class="ic">👥</div><div><b>Малые группы</b><p>Внимание каждому ученику и живое плечо сверстников, которые идут к своим целям рядом.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD MAGNET -->
+<section id="lead">
+  <div class="wrap">
+    <div class="lead-box">
+      <div class="lead-inner">
+        <div>
+          <span class="eyebrow" style="background:rgba(92,200,245,.15);color:#5cc8f5">Бесплатно</span>
+          <h2>Заберите пошаговый маршрут поступления</h2>
+          <p>Готовая схема: как определить направление ребёнка, выбрать предметы для подготовки и спланировать путь к поступлению шаг за шагом.</p>
+          <ul>
+            <li><span class="chk">✓</span><div>Как за 3 шага определить направление подростка</div></li>
+            <li><span class="chk">✓</span><div>Как выбрать предметы и спланировать подготовку под цель</div></li>
+            <li><span class="chk">✓</span><div>Карта пути: от «где ребёнок сейчас» до зачисления</div></li>
+          </ul>
+          <a href="#" class="btn btn-tg">Получить маршрут в Telegram</a>
+        </div>
+        <div class="lead-card">
+          <div class="big">🗺️</div>
+          <h3>Маршрут поступления</h3>
+          <p style="color:#aeb8cc">PDF-гайд приходит сразу в бот. Начнёте действовать уже сегодня.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- COMPARE -->
+<section id="compare" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Почему это работает сильнее</span>
+      <h2>Что получает подросток у нас — и чего ждать от привычных форматов</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Что важно для поступления</th>
+            <th>Онлайн-школы и нейросети</th>
+            <th>Обычный репетитор</th>
+            <th>Наш центр</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Знания по предметам</td><td class="yes">Да</td><td class="yes">Да</td><td>Да</td></tr>
+          <tr><td>Выбор направления и цели</td><td class="vn">—</td><td class="vn">—</td><td>Да</td></tr>
+          <tr><td>Личный маршрут к поступлению</td><td class="vn">—</td><td class="vn">—</td><td>Да</td></tr>
+          <tr><td>Живая среда и сообщество сверстников</td><td class="vn">—</td><td class="vn">—</td><td>Да</td></tr>
+          <tr><td>Контроль прогресса и отчёт родителю</td><td class="vn">—</td><td class="mid">частично</td><td>Да</td></tr>
+          <tr><td>Софт-скиллы и самоорганизация</td><td class="vn">—</td><td class="vn">—</td><td>Да</td></tr>
+          <tr><td>Поддержка и вовлечённость</td><td class="mid">частично</td><td class="mid">частично</td><td>Да</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="verdict">Знания даёт любой формат. <span>Цель, маршрут и доведение до результата</span> — рождаются только в живой среде рядом с наставником.</p>
+  </div>
+</section>
+
+<!-- PATH / STEPS -->
+<section id="path">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Как мы ведём ребёнка</span>
+      <h2>Четыре шага от неопределённости к зачислению</h2>
+      <p style="margin-top:14px">Понятный путь, по которому проходит каждый наш ученик — без хаоса и метаний.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>Диагностика</h3>
+        <p>Смотрим, где ребёнок сейчас: интересы, сильные стороны, уровень по предметам и реальные цели.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>Направление и цель</h3>
+        <p>Помогаем определить, куда он хочет идти, и превращаем размытое «не знаю» в конкретную цель.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>Маршрут подготовки</h3>
+        <p>Строим план под цель: предметы, темп, контрольные точки. Каждый шаг виден ребёнку и родителю.</p>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <h3>Доведение до результата</h3>
+        <p>Ведём в живом коллективе под контролем наставника — до уверенного поступления.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS / НАПРАВЛЕНИЯ -->
+<section id="products" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">С чего начать</span>
+      <h2>Выберите точку входа для вашего ребёнка</h2>
+      <p style="margin-top:14px">Начните с диагностики — это первый и главный шаг к ясности. Остальные форматы продолжают путь.</p>
+    </div>
+    <div class="cards">
+
+      <div class="card featured">
+        <div class="emo">🎯</div>
+        <div class="tag">Шаг первый</div>
+        <h3>Диагностика</h3>
+        <p>Встреча, после которой у ребёнка появляется ясность: куда идти, что подтягивать и каким будет маршрут.</p>
+        <div class="who">Для тех, кто готов разобраться с направлением и целью уже сейчас.</div>
+        <div class="price">Разбор ситуации + план действий</div>
+        <a href="#final" class="btn btn-primary">Записаться на диагностику</a>
+      </div>
+
+      <div class="card">
+        <div class="emo">📘</div>
+        <div class="tag">Подготовка</div>
+        <h3>Занятия по предметам</h3>
+        <p>Систематическая подготовка в малых группах под цель поступления, с контролем прогресса и обратной связью родителю.</p>
+        <div class="who">Для тех, кто уже определился с направлением и идёт к поступлению.</div>
+        <div class="price">Малые группы · живой формат</div>
+        <a href="#final" class="btn btn-ghost">Узнать расписание</a>
+      </div>
+
+      <div class="card">
+        <div class="emo">🧭</div>
+        <div class="tag">Для тех, кто пока думает</div>
+        <h3>Маршрут поступления</h3>
+        <p>Бесплатный пошаговый гайд: как определить направление, выбрать предметы и спланировать путь к цели.</p>
+        <div class="who">Для тех, кто пока присматривается и хочет начать с понятной схемы.</div>
+        <div class="price">Бесплатно · сразу в Telegram</div>
+        <a href="#lead" class="btn btn-tg">Забрать маршрут</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- РЕЗУЛЬТАТ: ДО / ПОСЛЕ -->
+<section id="outcome">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Что меняется</span>
+      <h2>Жизнь ребёнка до и после работы с нами</h2>
+      <p style="margin-top:14px">Главное изменение — не в оценках, а в том, что у подростка появляется внутренняя опора: он знает, куда идёт и зачем.</p>
+    </div>
+    <div class="out-grid">
+
+      <div class="out-col" style="border-top:4px solid var(--accent)">
+        <h3 style="color:var(--accent)">Было</h3>
+        <ul>
+          <li><span class="chk" style="background:rgba(255,138,61,.12);color:var(--accent)">–</span><div>Не понимает, кем хочет стать и куда поступать.</div></li>
+          <li><span class="chk" style="background:rgba(255,138,61,.12);color:var(--accent)">–</span><div>Учится «для галочки», без цели и мотивации.</div></li>
+          <li><span class="chk" style="background:rgba(255,138,61,.12);color:var(--accent)">–</span><div>Занятия онлайн — но вы не видите реального прогресса.</div></li>
+          <li><span class="chk" style="background:rgba(255,138,61,.12);color:var(--accent)">–</span><div>Откладывает подготовку, теряет драгоценное время.</div></li>
+          <li><span class="chk" style="background:rgba(255,138,61,.12);color:var(--accent)">–</span><div>Тревога в семье: «а вдруг не поступит».</div></li>
+          <li><span class="chk" style="background:rgba(255,138,61,.12);color:var(--accent)">–</span><div>Нет ощущения, что кто-то ведёт ребёнка за руку к цели.</div></li>
+        </ul>
+      </div>
+
+      <div class="out-col" style="border-top:4px solid var(--ok)">
+        <h3 style="color:var(--ok)">Стало</h3>
+        <ul>
+          <li><span class="chk">✓</span><div>Есть конкретная цель и понимание, куда поступать.</div></li>
+          <li><span class="chk">✓</span><div>Учится осмысленно — видит смысл и результат каждого шага.</div></li>
+          <li><span class="chk">✓</span><div>Прогресс виден: отчёты, контрольные точки, обратная связь родителю.</div></li>
+          <li><span class="chk">✓</span><div>Движется по маршруту без прокрастинации, собранно и в ритме.</div></li>
+          <li><span class="chk">✓</span><div>В семье — спокойствие и уверенность в завтрашнем дне.</div></li>
+          <li><span class="chk">✓</span><div>Рядом наставник и коллектив, которые ведут к поступлению.</div></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ПОДХОД / ГАРАНТИЯ -->
+<section id="approach">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:10px">
+      <span class="eyebrow">Наш подход</span>
+      <h2>Почему родители доверяют нам будущее своих детей</h2>
+      <p style="margin-top:14px">За 9 лет работы мы выстроили систему, в которой подросток не теряется, а каждый шаг прозрачен для семьи.</p>
+    </div>
+
+    <div class="cards" style="margin-top:34px">
+      <div class="card">
+        <div class="emo">🔎</div>
+        <h3>Прозрачность для родителя</h3>
+        <p>Вы всегда видите, что происходит: над чем работает ребёнок, какой прогресс и что дальше по маршруту. Никакого «чёрного ящика».</p>
+      </div>
+      <div class="card">
+        <div class="emo">🤝</div>
+        <h3>Наставник, а не просто педагог</h3>
+        <p>Рядом с ребёнком взрослый, который ведёт его к цели: поддерживает, направляет и держит фокус на результате.</p>
+      </div>
+      <div class="card">
+        <div class="emo">🏛️</div>
+        <h3>Живая офлайн-среда</h3>
+        <p>Коллектив сверстников, идущих к своим целям, создаёт ту атмосферу вовлечённости, которую невозможно собрать онлайн.</p>
+      </div>
+    </div>
+
+    <div class="guarantee" style="margin-top:40px">
+      <h2>Начните с диагностики — без риска</h2>
+      <p>Первый шаг ни к чему не обязывает. Вы придёте, мы разберём ситуацию ребёнка и честно скажем, что ему нужно. Если увидим, что подход вам не подходит — так и скажем. Наша цель — не «продать занятия», а привести подростка к ясности и поступлению.</p>
+      <div style="margin-top:28px">
+        <a href="#final" class="btn btn-primary" style="background:#fff;color:var(--brand-deep)">Записаться на диагностику</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ОТЗЫВЫ + СТАТИСТИКА -->
+<section id="reviews" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Нам доверяют</span>
+      <h2>Что говорят родители и подростки</h2>
+      <p style="margin-top:14px">Реальные истории семей, которые прошли путь от неопределённости до уверенного поступления.</p>
+    </div>
+
+    <div class="reviews">
+
+      <div class="review">
+        <p>«Сын полгода не мог решить, куда поступать. После диагностики появилась цель, а главное — он сам загорелся. Сейчас занимается с удовольствием и мы спокойны».</p>
+        <div class="who">
+          <div class="ava">ЕК</div>
+          <div><b>Елена К.</b><small>мама выпускника</small></div>
+        </div>
+      </div>
+
+      <div class="review">
+        <p>«Пробовали онлайн-школы — бросал через месяц. Здесь живой коллектив и наставник, который держит в тонусе. Прогресс вижу каждую неделю, это бесценно».</p>
+        <div class="who">
+          <div class="ava">ДМ</div>
+          <div><b>Дмитрий М.</b><small>папа ученицы</small></div>
+        </div>
+      </div>
+
+      <div class="review">
+        <p>«Я наконец-то понял, чего хочу и как к этому идти. Не просто зубрёжка, а понятный план. С ребятами в группе реально интереснее заниматься».</p>
+        <div class="who">
+          <div class="ava">АС</div>
+          <div><b>Артём, 16 лет</b><small>ученик центра</small></div>
+        </div>
+      </div>
+
+      <div class="review">
+        <p>«Понравилось, что с нами честно поговорили на первой встрече. Не навязывали, а показали реальную картину. Доверие появилось сразу».</p>
+        <div class="who">
+          <div class="ava">ОВ</div>
+          <div><b>Ольга В.</b><small>мама девятиклассника</small></div>
+        </div>
+      </div>
+
+      <div class="review">
+        <p>«Дочь стала собраннее не только в учёбе. Появилась самоорганизация, перестала всё откладывать. Это пригодится ей далеко за пределами экзаменов».</p>
+        <div class="who">
+          <div class="ava">ИП</div>
+          <div><b>Ирина П.</b><small>мама выпускницы</small></div>
+        </div>
+      </div>
+
+      <div class="review">
+        <p>«Главное — у ребёнка появилась уверенность. Он знает, куда идёт, и это видно по тому, как он говорит о будущем. Спасибо наставникам».</p>
+        <div class="who">
+          <div class="ava">СН</div>
+          <div><b>Сергей Н.</b><small>папа выпускника</small></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="stats">
+      <div><b>9</b><small>лет в образовании</small></div>
+      <div><b>500+</b><small>поступивших учеников</small></div>
+      <div><b>8–12</b><small>человек в группе</small></div>
+      <div><b>95%</b><small>доходят до цели</small></div>
+    </div>
+  </div>
+</section>
+<!-- О НАС -->
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:34px">
+      <span class="eyebrow">О центре</span>
+      <h2>Кто ведёт вашего ребёнка к цели</h2>
+    </div>
+    <div class="box">
+      <p style="font-size:1.12rem;color:var(--ink)">Мы — образовательный центр в Санкт-Петербурге с девятилетним опытом работы с подростками. За эти годы через нас прошли сотни учеников, и каждый убедил нас в одном: знания — это лишь половина дела.</p>
+      <p style="margin-top:18px">Вторая половина — это <strong style="color:var(--brand)">цель, среда и человек рядом</strong>, который ведёт ребёнка к результату. Поэтому мы не просто «подтягиваем по предметам». Мы помогаем подростку понять, кем он хочет стать, строим маршрут к поступлению и сопровождаем его до зачисления — в живом коллективе, под контролем наставника, по авторской методике.</p>
+      <p style="margin-top:18px">Мы работаем офлайн осознанно: живое плечо сверстников и внимание наставника дают ту вовлечённость и ответственность, которую не создать в одиночку перед экраном. Для родителей всё прозрачно — вы видите прогресс и всегда знаете, что происходит.</p>
+      <div style="margin-top:30px">
+        <a href="#final" class="btn btn-primary">Познакомиться на диагностике</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap" style="max-width:860px">
+    <div class="center" style="margin-bottom:38px">
+      <span class="eyebrow">Частые вопросы</span>
+      <h2>Отвечаем на то, что волнует родителей</h2>
+    </div>
+
+    <details open>
+      <summary>С чего начинается работа с ребёнком?</summary>
+      <div class="body">С диагностики. Это первая встреча, на которой мы разбираем ситуацию подростка: его интересы, сильные стороны, уровень по предметам и реальные цели. По итогу у ребёнка появляется ясность, а у вас — понятный план действий.</div>
+    </details>
+
+    <details>
+      <summary>А если ребёнок вообще не знает, кем хочет стать?</summary>
+      <div class="body">Это нормально и очень частая ситуация. Именно с этого мы и начинаем: помогаем определить направление и превратить размытое «не знаю» в конкретную цель. Многие приходят к нам именно за этим.</div>
+    </details>
+
+    <details>
+      <summary>Чем вы отличаетесь от онлайн-школ и репетиторов?</summary>
+      <div class="body">Онлайн-формат и репетитор дают знания, но редко дают цель, маршрут и живую среду. Мы работаем офлайн, в малых группах, с наставником, который ведёт ребёнка к результату, и по авторской методике «от смысла — к поступлению». Плюс вы всегда видите прогресс.</div>
+    </details>
+
+    <details>
+      <summary>Как я буду понимать, что есть результат?</summary>
+      <div class="body">Мы делаем процесс прозрачным: контрольные точки, обратная связь и отчёты родителю. Вы видите, над чем работает ребёнок, какой у него прогресс и что дальше по маршруту — без «чёрного ящика».</div>
+    </details>
+
+    <details>
+      <summary>В каком возрасте стоит приходить?</summary>
+      <div class="body">Чем раньше — тем спокойнее и сильнее подготовка. Оптимально начинать, когда до поступления ещё есть время определиться с направлением и выстроить маршрут без спешки. Но мы помогаем и тем, кто пришёл ближе к выпуску.</div>
+    </details>
+
+    <details>
+      <summary>Занятия только офлайн?</summary>
+      <div class="body">Да, основа нашего подхода — живая офлайн-среда в Санкт-Петербурге. Именно коллектив сверстников и наставник рядом создают ту вовлечённость и ответственность, которые дают настоящий результат.</div>
+    </details>
+
+    <details>
+      <summary>Диагностика — это платно и к чему-то обязывает?</summary>
+      <div class="body">Диагностика — это первый шаг, который ни к чему вас не обязывает. Мы честно разберём ситуацию ребёнка и скажем, что ему реально нужно. Если увидим, что наш подход вам не подходит — так и скажем.</div>
+    </details>
+
+    <details>
+      <summary>Что такое «маршрут поступления», который вы дарите?</summary>
+      <div class="body">Это бесплатный пошаговый PDF-гайд: как определить направление подростка, выбрать предметы для подготовки и спланировать путь к поступлению. Он приходит сразу в Telegram, и вы можете начать действовать уже сегодня.</div>
+    </details>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="final">
+  <div class="wrap">
+    <div class="final">
+      <span class="eyebrow" style="background:rgba(92,200,245,.15);color:#5cc8f5">Сделайте первый шаг</span>
+      <h2>Дайте ребёнку ясность, пока есть время</h2>
+      <p>Поступление случается раз в жизни. Запишитесь на диагностику — и уже на первой встрече ваш ребёнок получит цель, а вы — понятный маршрут к ней.</p>
+      <div class="final-cta">
+        <a href="#" class="btn btn-tg">Забрать маршрут в Telegram</a>
+      </div>
+      <form class="form" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ Заявка отправлена';">
+        <input type="text" placeholder="Ваше имя" required>
+        <input type="tel" placeholder="Телефон для связи" required>
+        <input type="text" placeholder="Возраст / класс ребёнка">
+        <button type="submit" class="btn btn-primary" style="justify-content:center">Записаться на диагностику</button>
+      </form>
+      <p style="margin-top:18px;font-size:.88rem">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Мы свяжемся с вами в ближайшее время.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="logo" style="margin-bottom:12px">Вектор<span>·</span>Поступление</div>
+    <p>Образовательный центр · Санкт-Петербург · офлайн-формат</p>
+    <p style="margin-top:8px">© 2024 Вектор·Поступление. Помогаем подросткам выбрать цель и поступить.</p>
+  </div>
+</footer>
+
+</body>
+</html>
